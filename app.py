@@ -1,6 +1,4 @@
 from flask import Flask
-from werkzeug.utils import secure_filename
-import os
 
 # Create a Flask application instance
 app = Flask(__name__)
