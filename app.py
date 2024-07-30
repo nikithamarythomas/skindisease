@@ -1,7 +1,11 @@
 from flask import Flask
+from werkzeug.utils import secure_filename
+import os
 
 # Create a Flask application instance
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'static/uploads/'
+app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 
 # Define a route for the root URL
 @app.route('/')
