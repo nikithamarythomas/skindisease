@@ -18,12 +18,12 @@ def allowed_file(filename):
 def home():
     return render_template('index.html')
 
-# Define a route for a recommendation example
-@app.route('/recommend')
-def recommend():
-    # This is where you would implement your recommendation logic
+# Define a route for a prediction example
+@app.route('/predict')
+def predict():
+    # This is where you would implement your predict logic
     # For now, we'll just return a placeholder message
-    return "Here are your recommended tracks: Track 1, Track 2, Track 3"
+    return "Here are your predictions"
 
 # Run the application
 if __name__ == '__main__':
