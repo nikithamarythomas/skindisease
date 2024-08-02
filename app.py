@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from werkzeug.utils import secure_filename
 import os
 
@@ -16,7 +16,7 @@ def allowed_file(filename):
 # Define a route for the root URL
 @app.route('/')
 def home():
-    return "Welcome to the Skin Disease Recognizer App!"
+    return render_template('index.html')
 
 # Define a route for a recommendation example
 @app.route('/recommend')
