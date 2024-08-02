@@ -19,11 +19,11 @@ def home():
     return render_template('index.html')
 
 # Define a route for a recommendation example
-@app.route('/predict')
+@app.route('/recommend')
 def recommend():
     # This is where you would implement your recommendation logic
     # For now, we'll just return a placeholder message
-    return render_template('predict.html')
+    return "Here are your recommended tracks: Track 1, Track 2, Track 3"
 
 # Run the application
 if __name__ == '__main__':
