@@ -78,5 +78,29 @@
         </form>
         <div id="result"></div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#predict-form').on('submit', function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        $('#result').text('Prediction: ' + response.prediction);
+                    },
+                    error: function(xhr) {
+                        $('#result').text('Error: ' + xhr.responseJSON.error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 import os
 import numpy as np
@@ -27,11 +27,14 @@ def preprocess_image(image_path):
     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
     return img_array
 
-# Define a route for the root URL
-
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/predict', methods=['GET'])
+def predict_page():
+    return render_template('predict.html')
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -70,4 +73,3 @@ def predict():
 # Run the application
 if __name__ == '__main__':
     app.run(debug=True)
-    
