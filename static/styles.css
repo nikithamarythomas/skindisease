@@ -38,7 +38,11 @@ h1 {
     font-size: 1.2em;
     color: white;
 }
-
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #1c2c91 !important    ; /* Set the background color to red */
+    border-radius: 50%;
+}
 .btn-primary {
     background-color: #007bff;
     border: none;
