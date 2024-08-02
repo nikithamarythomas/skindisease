@@ -1,9 +1,19 @@
 body {
-    background-color: #f8f9fa;
+    background-color: rgb(200, 159, 159) !important;
 }
 
 h1 {
     color: #343a40;
+}
+.carousel {
+    /* margin-top:  10%; */
+    
+}
+.carousel-item {
+    background-color: #333;
+    color: #f8f9fa;
+    padding: 40px 20px;
+    border-radius: 10px;
 }
 
 .carousel-caption {
@@ -11,6 +21,7 @@ h1 {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
+    position: static !important;
 }
 
 .carousel-caption h5 {
