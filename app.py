@@ -14,7 +14,7 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Load the pre-trained model
-model = tf.keras.models.load_model('path/to/your/model.h5')
+#model = tf.keras.models.load_model('path/to/your/model.h5')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
@@ -28,7 +28,11 @@ def preprocess_image(image_path):
     return img_array
 
 # Define a route for the root URL
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+@app.route('/predict', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
         # Check if the post request has the file part
@@ -65,9 +69,9 @@ def home():
             
             return jsonify({"prediction": result})
 
-    return render_template('index.html')
+    return render_template('predict.html')
 
 # Run the application
 if __name__ == '__main__':
     app.run(debug=True)
-    print("aaaa")
+    

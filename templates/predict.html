@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predict Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Inline CSS specific to this page */
+        body {
+            background-image: url('/static/uploads/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Optional: adds a white background with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px; /* Adjust as needed */
+            text-align: center; /* Center text inside the container */
+        }
+
+        h1 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Skin Cancer Risk Prediction</h1>
+        <form id="predict-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Upload Image:</label>
+                <input type="file" id="file" name="file" accept="image/*" required>
+            </div>
+            <button type="submit" class="btn-primary">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>
+</body>
+</html>
