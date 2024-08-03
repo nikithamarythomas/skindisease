@@ -1,0 +1,67 @@
+name: CI/CD for Flask Skin Cancer Prediction App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        source venv/bin/activate
+        pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install dependencies
+      run: |
+        # python -m venv venv
+        # source venv/bin/activate
+        pip install -r requirements.txt
+        gunicorn app:app
+
+    - name: Deploy to Render
+      # Only run this step if the branch is main
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
+      # run: |
+      #   # Add deployment commands here
+      #   # This is an example, you'll need to adjust it to your deployment method
+      #   curl -X POST -d "deploy=true" https://api.render.com/deploy
+      # env:
+      #   RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
