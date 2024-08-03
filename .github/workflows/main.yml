@@ -67,7 +67,7 @@ jobs:
         # source venv/bin/activate
         pip install --upgrade pip
         pip install -r requirements.txt
-        gunicorn app:app
+        
 
     - name: Deploy to Render
       if: github.ref == 'refs/heads/main'
