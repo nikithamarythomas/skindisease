@@ -14,11 +14,12 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg'}
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Load the pre-trained model
-model = tf.keras.models.load_model('best_model.keras')
+model = tf.keras.models.load_model('best_model.h5')
+
+
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
-
 def preprocess_image(image_path):
     """Load and preprocess the image."""
     img = load_img(image_path, target_size=(28, 28))
@@ -27,6 +28,7 @@ def preprocess_image(image_path):
     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
     return img_array
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -34,7 +36,6 @@ def index():
 @app.route('/predict', methods=['GET'])
 def predict_page():
     return render_template('predict.html')
-
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -52,7 +53,15 @@ def predict():
         # Preprocess the image and make predictions
         image_data = preprocess_image(file_path)
         predictions = model.predict(image_data)
+        
+        # Debug output
+        print("Processed image data shape:", image_data.shape)
+        print("Raw predictions:", predictions)
+        
         predicted_class = np.argmax(predictions, axis=1)[0]
+        
+        # Debug output
+        print("Predicted class index:", predicted_class)
         
         # Map class number to class name
         classes = {
@@ -69,6 +78,9 @@ def predict():
         return jsonify({'prediction': result})
     
     return jsonify({'error': 'Invalid file type'}), 400
+
+
+
 
 # Run the application
 if __name__ == '__main__':
