@@ -77,8 +77,9 @@ def predict():
         print("Prediction result:", result)
         
         response = jsonify({'prediction': result})
-        print("Response data:", response.get_data(as_text=True))
+        print(response)
         return response
+
     
     return jsonify({'error': 'Invalid file type'}), 400
 
