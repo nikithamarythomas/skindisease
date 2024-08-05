@@ -36,6 +36,8 @@ def index():
 @app.route('/predict', methods=['GET'])
 def predict_page():
     return render_template('predict.html')
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
@@ -54,16 +56,12 @@ def predict():
         image_data = preprocess_image(file_path)
         predictions = model.predict(image_data)
         
-        # Debug output
         print("Processed image data shape:", image_data.shape)
         print("Raw predictions:", predictions)
         
         predicted_class = np.argmax(predictions, axis=1)[0]
-        
-        # Debug output
         print("Predicted class index:", predicted_class)
         
-        # Map class number to class name
         classes = {
             4: 'melanocytic nevi', 
             6: 'melanoma', 
@@ -75,7 +73,12 @@ def predict():
         }
         result = classes.get(predicted_class, "Unknown")
 
-        return jsonify({'prediction': result})
+        # Debug output
+        print("Prediction result:", result)
+        
+        response = jsonify({'prediction': result})
+        print("Response data:", response.get_data(as_text=True))
+        return response
     
     return jsonify({'error': 'Invalid file type'}), 400
 
