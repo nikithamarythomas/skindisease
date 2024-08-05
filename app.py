@@ -74,11 +74,12 @@ def predict():
         result = classes.get(predicted_class, "Unknown")
 
         # Debug output
-        print("Prediction result:", result)
+        # print("Prediction result:", result)
         
-        response = jsonify({'prediction': result})
-        print(response)
-        return response
+        # response = jsonify({'prediction': result})
+        # print(response)
+        # return response
+        return("Hiiii")
 
     
     return jsonify({'error': 'Invalid file type'}), 400
