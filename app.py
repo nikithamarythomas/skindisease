@@ -81,10 +81,10 @@ def predict():
             result = classes.get(predicted_class, "Unknown")
             logging.debug(f'Prediction result: {result}')
             
-            return jsonify({'prediction': result})
+            return 'prediction'
         except Exception as e:
             logging.error(f'Error during prediction: {e}')
-            return jsonify({'error': 'Internal server error'}), 500
+            return 'test', 500
     
     error_message = 'Invalid file type'
     logging.error(error_message)
