@@ -4,6 +4,9 @@ import os
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -39,60 +42,53 @@ def predict_page():
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    logging.debug('Received a POST request to /predict')
     if 'file' not in request.files:
         error_message = 'No file part'
-        print(f"Debug: {error_message}")
-        response_data = {'error': error_message}
-        print(f"Debug: Response data before jsonify: {response_data}")
-        return jsonify(response_data), 400
+        logging.error(error_message)
+        return jsonify({'error': error_message}), 400
 
     file = request.files['file']
     if file.filename == '':
         error_message = 'No selected file'
-        print(f"Debug: {error_message}")
-        response_data = {'error': error_message}
-        print(f"Debug: Response data before jsonify: {response_data}")
-        return jsonify(response_data), 400
+        logging.error(error_message)
+        return jsonify({'error': error_message}), 400
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
+        logging.debug(f'File saved to {file_path}')
         
-        # Preprocess the image and make predictions
-        image_data = preprocess_image(file_path)
-        print(f"Debug: Processed image data shape: {image_data.shape}")
-
-        predictions = model.predict(image_data)
-        print(f"Debug: Raw predictions: {predictions}")
-
-        predicted_class = np.argmax(predictions, axis=1)[0]
-        print(f"Debug: Predicted class index: {predicted_class}")
-
-        classes = {
-            4: 'melanocytic nevi', 
-            6: 'melanoma', 
-            2: 'benign keratosis-like lesions', 
-            1: 'basal cell carcinoma', 
-            5: 'pyogenic granulomas and hemorrhage', 
-            0: 'Actinic keratoses and intraepithelial carcinomae',  
-            3: 'dermatofibroma'
-        }
-        result = classes.get(predicted_class, "Unknown")
-        print(f"Debug: Prediction result: {result}")
-
-        # Prepare response data
-        response_data = {'prediction': result}
-        print(f"Debug: Response data before jsonify: {response_data}")
-        
-        # Return the result as JSON
-        return jsonify(response_data)
+        try:
+            image_data = preprocess_image(file_path)
+            logging.debug(f'Processed image data shape: {image_data.shape}')
+            predictions = model.predict(image_data)
+            logging.debug(f'Raw predictions: {predictions}')
+            
+            predicted_class = np.argmax(predictions, axis=1)[0]
+            logging.debug(f'Predicted class index: {predicted_class}')
+            
+            classes = {
+                4: 'melanocytic nevi', 
+                6: 'melanoma', 
+                2: 'benign keratosis-like lesions', 
+                1: 'basal cell carcinoma', 
+                5: 'pyogenic granulomas and hemorrhage', 
+                0: 'Actinic keratoses and intraepithelial carcinomae',  
+                3: 'dermatofibroma'
+            }
+            result = classes.get(predicted_class, "Unknown")
+            logging.debug(f'Prediction result: {result}')
+            
+            return jsonify({'prediction': result})
+        except Exception as e:
+            logging.error(f'Error during prediction: {e}')
+            return jsonify({'error': 'Internal server error'}), 500
     
     error_message = 'Invalid file type'
-    print(f"Debug: {error_message}")
-    response_data = {'error': error_message}
-    print(f"Debug: Response data before jsonify: {response_data}")
-    return jsonify(response_data), 400
+    logging.error(error_message)
+    return jsonify({'error': error_message}), 400
 
 
 
