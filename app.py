@@ -37,15 +37,22 @@ def index():
 def predict_page():
     return render_template('predict.html')
 
-
 @app.route('/predict', methods=['POST'])
 def predict():
     if 'file' not in request.files:
-        return jsonify({'error': 'No file part'}), 400
+        error_message = 'No file part'
+        print(f"Debug: {error_message}")
+        response_data = {'error': error_message}
+        print(f"Debug: Response data before jsonify: {response_data}")
+        return jsonify(response_data), 400
 
     file = request.files['file']
     if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
+        error_message = 'No selected file'
+        print(f"Debug: {error_message}")
+        response_data = {'error': error_message}
+        print(f"Debug: Response data before jsonify: {response_data}")
+        return jsonify(response_data), 400
 
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
@@ -54,14 +61,14 @@ def predict():
         
         # Preprocess the image and make predictions
         image_data = preprocess_image(file_path)
+        print(f"Debug: Processed image data shape: {image_data.shape}")
+
         predictions = model.predict(image_data)
-        
-        print("Processed image data shape:", image_data.shape)
-        print("Raw predictions:", predictions)
-        
+        print(f"Debug: Raw predictions: {predictions}")
+
         predicted_class = np.argmax(predictions, axis=1)[0]
-        print("Predicted class index:", predicted_class)
-        
+        print(f"Debug: Predicted class index: {predicted_class}")
+
         classes = {
             4: 'melanocytic nevi', 
             6: 'melanoma', 
@@ -72,17 +79,21 @@ def predict():
             3: 'dermatofibroma'
         }
         result = classes.get(predicted_class, "Unknown")
+        print(f"Debug: Prediction result: {result}")
 
-        # Debug output
-        # print("Prediction result:", result)
+        # Prepare response data
+        response_data = {'prediction': result}
+        print(f"Debug: Response data before jsonify: {response_data}")
         
-        # response = jsonify({'prediction': result})
-        # print(response)
-        # return response
-        return("Hiiii")
-
+        # Return the result as JSON
+        return jsonify(response_data)
     
-    return jsonify({'error': 'Invalid file type'}), 400
+    error_message = 'Invalid file type'
+    print(f"Debug: {error_message}")
+    response_data = {'error': error_message}
+    print(f"Debug: Response data before jsonify: {response_data}")
+    return jsonify(response_data), 400
+
 
 
 
