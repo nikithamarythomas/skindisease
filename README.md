@@ -60,3 +60,12 @@ Server Issues: Check for port conflicts or missing environment variables.
 
 ACKNOWLEDGEMENTS
 Special thanks to the developers and contributors who helped build this project. Additionally, acknowledgment for the dataset sources and any libraries used.
+
+CONTACT INFORMATIONS
+For questions or support, contact at [nimisha.parameswaranthankamani@dcmail.ca / nikitha.thomas@dcmail.ca / geethu.vijayan@dcmail.ca / anju.sunny@dcmail.ca].
+
+FAQ
+1) What formats of images are supported?
+   The application supports JPEG and PNG formats.
+2) Can the model be trained on new data?
+   Yes, the model can be retrained using the skin.ipynb notebook with new data.
