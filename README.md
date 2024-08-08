@@ -8,3 +8,22 @@ Features
 Image Classification: Classifies images into different skin disease categories.
 Web Interface: User-friendly interface for uploading images and viewing predictions.
 Model Integration: Real-time predictions using a pre-trained deep learning model.
+
+Installation
+
+Prerequisites
+Python 3.x
+Virtual environment tool (optional but recommended)
+
+STEPS : 
+1) git clone <repository_url>
+   cd skindisease-main
+
+2) Create and activate virtual environment
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+
+3) Install Dependencies
+    pip install -r requirements.txt
+
+
