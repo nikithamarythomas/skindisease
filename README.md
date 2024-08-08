@@ -41,3 +41,10 @@ USAGE
     Upload an image of a skin condition to receive a prediction from the model.
 
 
+CONTRIBUTING TO THIS REPOSITORY
+Contributions are welcome! Please follow these steps:
+
+1) Fork the repository.
+2) Create a new branch for your feature or bugfix.
+3) Submit a pull request with a clear description of your changes.
+
