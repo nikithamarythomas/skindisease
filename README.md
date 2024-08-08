@@ -26,4 +26,10 @@ STEPS :
 3) Install Dependencies
     pip install -r requirements.txt
 
+USAGE 
+
+1) RUNNING WEB APPLICATION
+    python app.py -------------This command will start the Flask server. Open your browser and navigate to http://127.0.0.1:5000 to use the application.
+    Upload an image of a skin condition to receive a prediction from the model.
+
 
