@@ -51,8 +51,12 @@ Contributions are welcome! Please follow these steps:
 DEPLOYMENT
 Instructions on how to deploy the application
 
-TROUBLESHOOT
-Common issues and solutions:
 
+TROUBLESHOOT
+----Common issues and solutions:----
 Installation Errors: Ensure all dependencies are installed correctly.
 Server Issues: Check for port conflicts or missing environment variables.
+
+
+ACKNOWLEDGEMENTS
+Special thanks to the developers and contributors who helped build this project. Additionally, acknowledgment for the dataset sources and any libraries used.
