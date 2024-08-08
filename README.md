@@ -3,3 +3,8 @@ This project aims to develop a machine learning model capable of detecting skin 
 
 Project Overview
 Skin diseases are common, and early detection is crucial for effective treatment. This project utilizes deep learning techniques to classify various skin conditions based on images. The model is integrated into a Flask web application, providing an easy-to-use interface for real-time predictions.
+
+Features
+Image Classification: Classifies images into different skin disease categories.
+Web Interface: User-friendly interface for uploading images and viewing predictions.
+Model Integration: Real-time predictions using a pre-trained deep learning model.
