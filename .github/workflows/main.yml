@@ -38,10 +38,10 @@ jobs:
         source venv/bin/activate
         pip list
 
-    # - name: Run tests
-    #   run: |
-    #     source venv/bin/activate
-    #     pytest
+    - name: Run tests
+      run: |
+         source venv/bin/activate
+         pytest
 
   deploy:
     runs-on: ubuntu-latest
