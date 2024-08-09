@@ -24,9 +24,9 @@ def test_predict_invalid_file(client):
     assert response.status_code == 400
     assert 'error' in response.json  # Check that an error is returned
 
-# def test_fail(client):
-#     """This test is deliberately designed to fail"""
-#     assert 1 + 1 == 3
+def test_fail(client):
+    """This test is deliberately designed to fail"""
+    assert 1 + 1 == 3
 
 @pytest.fixture(scope='module', autouse=True)
 def cleanup():
