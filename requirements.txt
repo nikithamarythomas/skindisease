@@ -3,3 +3,4 @@ gunicorn
 numpy
 tensorflow
 Pillow
+pytest
