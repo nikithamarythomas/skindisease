@@ -25,7 +25,7 @@ Virtual environment tool (optional but recommended)
 
 ## STEPS : 
 1) ``` bash
-git clone <repository_url>
+   git clone https://github.com/nikithamarythomas/skindisease.git
    cd skindisease-main
    ```
 
@@ -38,7 +38,7 @@ git clone <repository_url>
    `venv\Scripts\activate`
 
 3) Install Dependencies
-``` python
+    ``` python
     pip install -r requirements.txt
     ```
 
