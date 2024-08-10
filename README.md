@@ -66,24 +66,24 @@ The Flask application was successfully deployed on Render, allowing users to acc
 Although the application ran smoothly in the local environment, we faced issues when processing images in the cloud environment on Render. This problem is likely due to the limitations of cloud storage or differences in how files are handled between local storage and Render's cloud storage.
 
 ## Steps for Deployment on Render:
-1)Prepare the Flask Application:
+1) Prepare the Flask Application:
 
 Ensure the application is fully functional locally before deploying.
 Confirm that all dependencies are listed in requirements.txt.
 
-2)Create a Render Account:
+2) Create a Render Account:
 
 Sign up at Render.
 
-3)Deploy the Application:
+3) Deploy the Application:
 
 Link the GitHub repository to Render.
 
-4)Environment Configuration:
+4) Environment Configuration:
 
 Ensure all necessary environment variables (e.g., FLASK_ENV, MODEL_PATH) are configured correctly in the Render dashboard.
 
-5)Monitor and Troubleshoot:
+5) Monitor and Troubleshoot:
 
 After deployment, monitor the application for any issues, particularly related to image processing.
 
