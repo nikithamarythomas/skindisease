@@ -48,8 +48,8 @@ Virtual environment tool (optional but recommended)
    ``` bash
     python app.py
    ```
-
-     -------------This command will start the Flask server. Open your browser and navigate to http://127.0.0.1:5000 to use the application.
+</br>
+    This command will start the Flask server. Open your browser and navigate to http://127.0.0.1:5000 to use the application.
     Upload an image of a skin condition to receive a prediction from the model.
 
 
@@ -68,24 +68,24 @@ Although the application ran smoothly in the local environment, we faced issues 
 ## Steps for Deployment on Render:
 1) Prepare the Flask Application:
 
-Ensure the application is fully functional locally before deploying.
-Confirm that all dependencies are listed in requirements.txt.
+      Ensure the application is fully functional locally before deploying.
+      Confirm that all dependencies are listed in requirements.txt.
 
 2) Create a Render Account:
 
-Sign up at Render.
+      Sign up at Render.
 
 3) Deploy the Application:
 
-Link the GitHub repository to Render.
+      Link the GitHub repository to Render.
 
 4) Environment Configuration:
 
-Ensure all necessary environment variables (e.g., FLASK_ENV, MODEL_PATH) are configured correctly in the Render dashboard.
+      Ensure all necessary environment variables (e.g., FLASK_ENV, MODEL_PATH) are configured correctly in the Render dashboard.
 
 5) Monitor and Troubleshoot:
 
-After deployment, monitor the application for any issues, particularly related to image processing.
+      After deployment, monitor the application for any issues, particularly related to image processing.
 
 
 ### TROUBLESHOOT
