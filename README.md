@@ -89,7 +89,7 @@ Although the application ran smoothly in the local environment, we faced issues 
 
 
 ### TROUBLESHOOT
-----Common issues and solutions:----
+----Common issues and solutions:----<br/>
 Installation Errors: Ensure all dependencies are installed correctly.<br/>
 Server Issues: Check for port conflicts or missing environment variables.
 
